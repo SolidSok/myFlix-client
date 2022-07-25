@@ -31694,7 +31694,7 @@ function RegistrationView(props) {
     const handleSubmit = (e)=>{
         e.preventDefault();
         console.log(username, password, email, birthday);
-    // props.onLoggedIn(username);
+        props.onRegistration(username);
     };
     return(/*#__PURE__*/ _jsxRuntime.jsxs("form", {
         __source: {
@@ -31802,7 +31802,7 @@ function RegistrationView(props) {
 }
 _s(RegistrationView, "tdA1KK8yaZidqYo0wscqshHt/KE=");
 _c = RegistrationView;
-RegistrationView.propTypes = {
+RegistrationView.PropTypes = {
     onRegistration: _propTypesDefault.default.func.isRequired
 };
 var _c;
