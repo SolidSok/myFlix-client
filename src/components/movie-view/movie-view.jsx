@@ -1,4 +1,5 @@
 import React from 'React';
+import PropTypes from 'prop-types';
 
 export class MovieView extends React.Component {
   render() {
@@ -6,7 +7,7 @@ export class MovieView extends React.Component {
     return (
       <div className="movie-view">
         <div className="movie-poster">
-          <img src={movie.ImagePath} />
+          <img crossOrigin="anonymous" src={movie.ImagePath} />
         </div>
         <div className="movie-title">
           <span className="label">Title: </span>
@@ -18,11 +19,11 @@ export class MovieView extends React.Component {
         </div>
         <div className="movie-genre">
           <span className="label">Genre: </span>
-          <span className="value">{movie.Genre}</span>
+          <span className="value">{movie.Genre.Name}</span>
         </div>
         <div className="movie-director">
           <span className="label">Director: </span>
-          <span className="value">{movie.Director}</span>
+          <span className="value">{movie.Director.Name}</span>
         </div>
         <button
           onClick={() => {
@@ -35,3 +36,19 @@ export class MovieView extends React.Component {
     );
   }
 }
+MovieView.propTypes = {
+  movie: PropTypes.shape({
+    Title: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired,
+    Genre: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+      Description: PropTypes.string.isRequired,
+    }),
+    Director: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+      Bio: PropTypes.string.isRequired,
+      Birthday: PropTypes.string.isRequired,
+    }),
+    ImagePath: PropTypes.string.isRequired,
+  }).isRequired,
+};
