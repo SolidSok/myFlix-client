@@ -1,5 +1,11 @@
-$color: steelblue;
+html {
+  background-color: #273768;
+}
 
-.my-flix {
-  color: $color;
+body {
+  background-color: rgb(122, 143, 187);
+  font-family: 'Roboto', sans-serif;
+}
+.app-container {
+  background-color: #273768;
 }

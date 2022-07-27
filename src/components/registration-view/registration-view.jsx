@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   Container,
   Row,
@@ -11,31 +12,16 @@ import {
 
 import './registration-view.scss';
 
-import PropTypes from 'prop-types';
-import axios from 'axios';
-
 export function RegistrationView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [birthday, setBirthday] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post('https://sokflix.herokuapp.com/users', {
-        Username: username,
-        Password: password,
-        Email: email,
-      })
-      .then((response) => {
-        const data = response.data;
-        console.log(data);
-        window.open('/', '_self');
-      })
-      .catch((e) => {
-        console.log('error registering the user');
-        alert("Something wasn't entered correctly");
-      });
+    console.log(username, password, email, birthday);
+    props.onRegistration(username);
   };
 
   return (
@@ -74,6 +60,14 @@ export function RegistrationView(props) {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       placeholder="Enter an email address"
+                    />
+                  </Form.Group>
+
+                  <Form.Group controlId="formBirthday">
+                    <Form.Label>Birthday:</Form.Label>
+                    <Form.Control
+                      type="date"
+                      onChange={(e) => setBirthday(e.target.value)}
                     />
                   </Form.Group>
 

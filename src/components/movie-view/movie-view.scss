@@ -1,4 +1,10 @@
 .movie-poster {
-  height: 100px;
-  width: 100px;
+  justify-content: center;
+  display: flex;
+}
+
+.movie-view {
+  background-color: #4b5b95;
+  color: #ebebeb;
+  padding: 3rem;
 }

@@ -21,7 +21,7 @@ export function LoginView(props) {
     props.onLoggedIn(username);
   };
   return (
-    <Container>
+    <Container className="default-container">
       <Row>
         <Col>
           <CardGroup>
