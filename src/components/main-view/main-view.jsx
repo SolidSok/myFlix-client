@@ -22,16 +22,13 @@ export class MainView extends React.Component {
   }
 
   componentDidMount() {
-    axios
-      .get('https://sokFlix.herokuapp.com/movies')
-      .then((response) => {
-        this.setState({
-          movies: response.data,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user'),
       });
+      this.getMovies(accessToken);
+    }
   }
 
   setSelectedMovie(newSelectedMovie) {
@@ -40,9 +37,21 @@ export class MainView extends React.Component {
     });
   }
 
-  onLoggedIn(user) {
+  onLoggedIn(authData) {
+    console.log(authData);
     this.setState({
-      user,
+      user: authData.user.Username,
+    });
+
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', authData.user.Username);
+    this.getMovies(authData.token);
+  }
+  onLoggedOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.setState({
+      user: null,
     });
   }
 
@@ -52,18 +61,34 @@ export class MainView extends React.Component {
     });
   }
 
+  getMovies(token) {
+    axios
+      .get('https://sokflix.herokuapp.com/movies', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        // Assign the result to the state
+        this.setState({
+          movies: response.data,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   render() {
     const { movies, selectedMovie, user, registered } = this.state;
 
     if (!user)
       return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
 
-    if (!registered)
-      return (
-        <RegistrationView
-          onRegistration={(registered) => this.onRegistration(registered)}
-        />
-      );
+    // if (!registered)
+    //   return (
+    //     <RegistrationView
+    //       onRegistration={(registered) => this.onRegistration(registered)}
+    //     />
+    //   );
 
     if (movies.length === 0) return <div className="main-view" />;
 
@@ -91,6 +116,13 @@ export class MainView extends React.Component {
             </Col>
           ))
         )}
+        <button
+          onClick={() => {
+            this.onLoggedOut();
+          }}
+        >
+          Logout
+        </button>
       </Row>
     );
   }
