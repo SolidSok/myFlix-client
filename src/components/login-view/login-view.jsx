@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import {
   Container,
   Row,
@@ -22,17 +23,17 @@ export function LoginView(props) {
   const validate = () => {
     let isReq = true;
     if (!username) {
-      setUsernameErr('Username Required');
+      setUsernameErr('Username is required');
       isReq = false;
     } else if (username.length < 4) {
       setUsernameErr('Username must be at least 4 characters long');
       isReq = false;
     }
     if (!password) {
-      setPasswordErr('Password Required');
+      setPasswordErr('Password is required');
       isReq = false;
     } else if (password.length < 6) {
-      setPassword('Password must be at least 6 characters long');
+      setPasswordErr('Password must be at least 6 characters long');
       isReq = false;
     }
 
@@ -75,7 +76,7 @@ export function LoginView(props) {
                       placeholder="Enter username"
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
-                    />{' '}
+                    />
                     {usernameErr && <p>{usernameErr}</p>}
                   </Form.Group>
 
@@ -99,6 +100,14 @@ export function LoginView(props) {
                   </Button>
                 </Form>
               </Card.Body>
+
+              <Card.Footer>
+                <Link to="/register">
+                  <Button className="ma-0 col-10 offset-1" variant="link">
+                    Not Registered? Sign Up
+                  </Button>
+                </Link>
+              </Card.Footer>
             </Card>
           </CardGroup>
         </Col>
