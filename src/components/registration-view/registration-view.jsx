@@ -69,10 +69,13 @@ export function RegistrationView(props) {
         })
         .then((response) => {
           const data = response.data;
-          props.onRegistration(data);
+          console.log(data);
+          alert('Registration successful, please login!');
+          window.open('/', '_self');
         })
-        .catch((err) => {
-          console.log('unable to register');
+        .catch((response) => {
+          console.error(response);
+          alert('unable to register!');
         });
     }
     props.onRegistration(username);
@@ -151,5 +154,5 @@ RegistrationView.propTypes = {
     Password: PropTypes.string.isRequired,
     Email: PropTypes.string.isRequired,
   }),
-  onRegistration: Proptypes.func.isRequired,
+  onRegistration: PropTypes.func.isRequired,
 };
