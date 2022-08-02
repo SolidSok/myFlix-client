@@ -27,6 +27,9 @@ export class MainView extends React.Component {
     this.state = {
       movies: [],
       user: null,
+      email: null,
+      birthday: null,
+      favorites: null,
     };
   }
 
@@ -51,6 +54,9 @@ export class MainView extends React.Component {
     if (accessToken !== null) {
       this.setState({
         user: localStorage.getItem('user'),
+        email: localStorage.getItem('email'),
+        birthday: localStorage.getItem('birthday'),
+        favorites: localStorage.getItem('favorites'),
       });
       this.getMovies(accessToken);
     }
@@ -60,10 +66,16 @@ export class MainView extends React.Component {
     console.log(authData);
     this.setState({
       user: authData.user.Username,
+      email: authData.user.Email,
+      birthday: authData.user.Birthday,
+      favorites: authData.user.FavoriteMovies,
     });
 
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
+    localStorage.setItem('email', authData.user.Email);
+    localStorage.setItem('birthday', authData.user.Birthday);
+    localStorage.setItem('favorites', authData.user.FavoriteMovies);
     this.getMovies(authData.token);
   }
 
@@ -161,11 +173,6 @@ export class MainView extends React.Component {
                         movie => movie.Genre.Name === match.params.name
                       ).Genre
                     }
-                    genreMovies={
-                      movies.filter(
-                        movie => movie.Genre.Name === match.params.name
-                      ).Genre
-                    }
                     onBackClick={() => history.goBack()}
                   />
                 </Col>
@@ -174,7 +181,7 @@ export class MainView extends React.Component {
           />
 
           <Route
-            path={'/users/${user}'}
+            path={`/users/${user}`}
             render={({ history }) => {
               if (!user)
                 return (

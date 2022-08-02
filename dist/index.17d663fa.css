@@ -1,0 +1,27 @@
+
+.movie-poster {
+  justify-content: center;
+  display: flex;
+}
+
+.movie-view {
+  background-color: #4b5b95;
+  color: #ebebeb;
+  padding: 3rem;
+}
+
+
+
+html {
+  background-color: #273768;
+}
+
+body {
+  background-color: rgb(122, 143, 187);
+  font-family: "Roboto", sans-serif;
+}
+
+.app-container {
+  background-color: #273768;
+}
+/*# sourceMappingURL=index.17d663fa.css.map */
