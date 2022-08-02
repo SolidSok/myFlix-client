@@ -103,9 +103,7 @@ export function LoginView(props) {
 
               <Card.Footer>
                 <Link to="/register">
-                  <Button className="ma-0 col-10 offset-1" variant="link">
-                    Not Registered? Sign Up
-                  </Button>
+                  <Button variant="link">Not Registered? Sign Up</Button>
                 </Link>
               </Card.Footer>
             </Card>
