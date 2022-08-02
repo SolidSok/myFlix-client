@@ -35,13 +35,13 @@ export class MainView extends React.Component {
       .get('https://sokflix.herokuapp.com/movies', {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((response) => {
+      .then(response => {
         // Assign the result to the state
         this.setState({
           movies: response.data,
         });
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
       });
   }
@@ -81,15 +81,12 @@ export class MainView extends React.Component {
               if (!user)
                 return (
                   <Col>
-                    <LoginView
-                      movies={movies}
-                      onLoggedIn={(user) => this.onLoggedIn(user)}
-                    />
+                    <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
                   </Col>
                 );
               if (movies.length === 0) return <div className="main-view" />;
 
-              return movies.map((m) => <MovieCard key={m._id} movie={m} />);
+              return movies.map(m => <MovieCard key={m._id} movie={m} />);
             }}
           />
 
@@ -101,7 +98,7 @@ export class MainView extends React.Component {
                   <Col>
                     <LoginView
                       movies={movies}
-                      onLoggedIn={(user) => this.onLoggedIn(user)}
+                      onLoggedIn={user => this.onLoggedIn(user)}
                     />
                   </Col>
                 );
@@ -110,7 +107,7 @@ export class MainView extends React.Component {
               return (
                 <Col md={8}>
                   <MovieView
-                    movie={movies.find((m) => m._id === match.params.movieId)}
+                    movie={movies.find(m => m._id === match.params.movieId)}
                     onBackClick={() => history.goBack()}
                   />
                 </Col>
@@ -118,16 +115,25 @@ export class MainView extends React.Component {
             }}
           />
           <Route
-            path="/directors/:name"
+            path="/movies/directors/:name"
             render={({ match, history }) => {
-              if (!user) return <Redirect to="/" />;
+              if (!user)
+                return (
+                  <Col>
+                    <LoginView
+                      movies={movies}
+                      onLoggedIn={user => this.onLoggedIn(user)}
+                    />
+                  </Col>
+                );
               if (movies.length === 0) return <div className="main-view" />;
               return (
                 <Col md={8}>
                   <DirectorView
-                    director={movies.find(
-                      (m) => m.Director.Name === match.params.name
-                    )}
+                    director={
+                      movies.find(m => m.Director.Name === match.params.name)
+                        .Director
+                    }
                     onBackClick={() => history.goBack()}
                   />
                 </Col>
@@ -135,29 +141,33 @@ export class MainView extends React.Component {
             }}
           />
           <Route
-            path="/genres/:name"
+            path="/movies/genres/:name"
             render={({ match, history }) => {
-              if (!user) return <Redirect to="/" />;
+              if (!user)
+                return (
+                  <Col>
+                    <LoginView
+                      movies={movies}
+                      onLoggedIn={user => this.onLoggedIn(user)}
+                    />
+                  </Col>
+                );
               if (movies.length === 0) return <div className="main-view" />;
               return (
-                <col md={8}>
+                <Col md={8}>
                   <GenreView
-                    genre={movies.find(
-                      (m) => m.Genre.Name === match.params.name
-                    )}
+                    genre={
+                      movies.find(
+                        movie => movie.Genre.Name === match.params.name
+                      ).Genre
+                    }
+                    genreMovies={
+                      movies.filter(
+                        movie => movie.Genre.Name === match.params.name
+                      ).Genre
+                    }
                     onBackClick={() => history.goBack()}
                   />
-                </col>
-              );
-            }}
-          />
-          <Route
-            path="/register"
-            render={() => {
-              if (user) return <Redirect to="/" />;
-              return (
-                <Col lg={8} md={8}>
-                  <RegistrationView />
                 </Col>
               );
             }}
@@ -166,7 +176,15 @@ export class MainView extends React.Component {
           <Route
             path={'/users/${user}'}
             render={({ history }) => {
-              if (!user) return <Redirect to="/" />;
+              if (!user)
+                return (
+                  <Col>
+                    <LoginView
+                      movies={movies}
+                      onLoggedIn={user => this.onLoggedIn(user)}
+                    />
+                  </Col>
+                );
               return (
                 <Col>
                   <ProfileView
@@ -179,15 +197,12 @@ export class MainView extends React.Component {
             }}
           />
           <Route
-            path={'/user-update/${user{'}
-            render={({ history }) => {
-              if (!user) return <Redirect to="/" />;
+            path="/register"
+            render={() => {
+              if (user) return <Redirect to="/" />;
               return (
-                <Col>
-                  <UserUpdate
-                    user={user}
-                    onBackClick={() => history.goBack()}
-                  />
+                <Col lg={8} md={8}>
+                  <RegistrationView />
                 </Col>
               );
             }}

@@ -1,25 +1,33 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
-import { Card, Col, Container, Row, Button } from 'react-bootstrap';
+import { Row, Card, Button } from 'react-bootstrap';
+import { MovieCard } from '../movie-card/movie-card';
 import './genre-view.scss';
 
 export class GenreView extends React.Component {
+  constructor() {
+    super();
+    this.state;
+  }
   render() {
-    const { genre, onBackClick } = this.props;
+    const { genre, genreMovies, onBackClick } = this.props;
 
     return (
       <Card>
-        <Card.Header>{genre.Genre.Name}</Card.Header>
+        <Card.Header>{genre.Name}</Card.Header>
         <Card.Body>
-          <Card.Text>{genre.Genre.Description}</Card.Text>
-          <Card.Text>{genre.Genre.ImagePath}</Card.Text>
+          <Card.Text>{genre.Description}</Card.Text>
+          <Row>
+            {genreMovies.map(movie => (
+              <MovieCard key={movie._id} movie={movie}>
+                {movie.Title}
+              </MovieCard>
+            ))}
+          </Row>
           <Button
             variant="warning"
             onClick={() => {
               onBackClick();
-            }}
-          >
+            }}>
             Back
           </Button>
         </Card.Body>
