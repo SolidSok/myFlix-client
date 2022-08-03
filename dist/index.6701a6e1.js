@@ -25281,10 +25281,7 @@ class MainView extends _reactDefault.default.Component {
         super();
         this.state = {
             movies: [],
-            user: null,
-            email: null,
-            birthday: null,
-            favorites: null
+            user: null
         };
     }
     getMovies(token) {
@@ -25305,10 +25302,7 @@ class MainView extends _reactDefault.default.Component {
         let accessToken = localStorage.getItem('token');
         if (accessToken !== null) {
             this.setState({
-                user: localStorage.getItem('user'),
-                email: localStorage.getItem('email'),
-                birthday: localStorage.getItem('birthday'),
-                favorites: localStorage.getItem('favorites')
+                user: localStorage.getItem('user')
             });
             this.getMovies(accessToken);
         }
@@ -25316,10 +25310,7 @@ class MainView extends _reactDefault.default.Component {
     onLoggedIn(authData) {
         console.log(authData);
         this.setState({
-            user: authData.user.Username,
-            email: authData.user.Email,
-            birthday: authData.user.Birthday,
-            favorites: authData.user.FavoriteMovies
+            user: authData.user.Username
         });
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
@@ -25333,7 +25324,7 @@ class MainView extends _reactDefault.default.Component {
         return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 86
+                lineNumber: 77
             },
             __self: this,
             children: [
@@ -25341,7 +25332,7 @@ class MainView extends _reactDefault.default.Component {
                     user: user,
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 87
+                        lineNumber: 78
                     },
                     __self: this
                 }),
@@ -25349,7 +25340,7 @@ class MainView extends _reactDefault.default.Component {
                     className: "main-view justify-content-md-center",
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 88
+                        lineNumber: 79
                     },
                     __self: this,
                     children: [
@@ -25372,7 +25363,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 89
+                                lineNumber: 80
                             },
                             __self: this
                         }),
@@ -25399,7 +25390,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 105
+                                lineNumber: 96
                             },
                             __self: this
                         }),
@@ -25426,7 +25417,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 129
+                                lineNumber: 120
                             },
                             __self: this
                         }),
@@ -25447,13 +25438,15 @@ class MainView extends _reactDefault.default.Component {
                                     children: /*#__PURE__*/ _jsxRuntime.jsx(_genreView.GenreView, {
                                         genre: movies.find((movie)=>movie.Genre.Name === match.params.name
                                         ).Genre,
+                                        genreMovies: movies.filter((m)=>m.Genre.Name === match.params.name
+                                        ),
                                         onBackClick: ()=>history.goBack()
                                     })
                                 }));
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 155
+                                lineNumber: 146
                             },
                             __self: this
                         }),
@@ -25476,7 +25469,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 183
+                                lineNumber: 177
                             },
                             __self: this
                         }),
@@ -25495,7 +25488,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 206
+                                lineNumber: 200
                             },
                             __self: this
                         })
@@ -45120,6 +45113,26 @@ class GenreView extends _reactDefault.default.Component {
                             },
                             __self: this,
                             children: "Back"
+                        }),
+                        /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Row, {
+                            __source: {
+                                fileName: "src/components/genre-view/genre-view.jsx",
+                                lineNumber: 27
+                            },
+                            __self: this,
+                            children: [
+                                ' ',
+                                genreMovies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
+                                        movie: movie,
+                                        __source: {
+                                            fileName: "src/components/genre-view/genre-view.jsx",
+                                            lineNumber: 30
+                                        },
+                                        __self: this,
+                                        children: movie.title
+                                    }, movie._id)
+                                )
+                            ]
                         })
                     ]
                 })

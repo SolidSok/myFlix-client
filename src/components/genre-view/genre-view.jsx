@@ -24,6 +24,14 @@ export class GenreView extends React.Component {
             }}>
             Back
           </Button>
+          <Row>
+            {' '}
+            {genreMovies.map(movie => (
+              <MovieCard key={movie._id} movie={movie}>
+                {movie.title}
+              </MovieCard>
+            ))}
+          </Row>
         </Card.Body>
       </Card>
     );
