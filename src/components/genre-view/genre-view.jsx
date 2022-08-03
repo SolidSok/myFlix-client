@@ -17,13 +17,6 @@ export class GenreView extends React.Component {
         <Card.Body>
           <Card.Text>{genre.Description}</Card.Text>
 
-          <Button
-            variant="warning"
-            onClick={() => {
-              onBackClick();
-            }}>
-            Back
-          </Button>
           <Row>
             {' '}
             {genreMovies.map(movie => (
@@ -32,6 +25,13 @@ export class GenreView extends React.Component {
               </MovieCard>
             ))}
           </Row>
+          <Button
+            variant="warning"
+            onClick={() => {
+              onBackClick();
+            }}>
+            Back
+          </Button>
         </Card.Body>
       </Card>
     );

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 export function Navbar({ user }) {
   const onLoggedOut = () => {
@@ -24,8 +23,7 @@ export function Navbar({ user }) {
       sticky="top"
       bg="dark"
       expand="lg"
-      variant="dark"
-    >
+      variant="dark">
       <Container>
         <Navbar.Brand className="navbar-logo" href="/">
           sokFlixCinema
