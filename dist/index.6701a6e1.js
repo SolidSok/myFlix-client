@@ -25354,7 +25354,8 @@ class MainView extends _reactDefault.default.Component {
                                     })
                                 }));
                                 if (movies.length === 0) return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
-                                    className: "main-view"
+                                    className: "main-view",
+                                    children: "Loading information..."
                                 }));
                                 return movies.map((m)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
                                         movie: m
@@ -25390,7 +25391,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 96
+                                lineNumber: 97
                             },
                             __self: this
                         }),
@@ -25419,7 +25420,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 120
+                                lineNumber: 121
                             },
                             __self: this
                         }),
@@ -25448,7 +25449,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 149
+                                lineNumber: 150
                             },
                             __self: this
                         }),
@@ -25471,7 +25472,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 180
+                                lineNumber: 181
                             },
                             __self: this
                         }),
@@ -25490,7 +25491,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 203
+                                lineNumber: 204
                             },
                             __self: this
                         })
@@ -44209,6 +44210,7 @@ class MovieCard extends _reactDefault.default.Component {
     render() {
         const { movie  } = this.props;
         return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
+            md: 6,
             lg: 4,
             xl: 3,
             __source: {
