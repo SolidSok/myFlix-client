@@ -1,12 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Redirect,
-  Link,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
 import './main-view.scss';
 
