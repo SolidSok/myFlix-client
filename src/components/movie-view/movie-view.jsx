@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Row, Col, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -16,6 +17,7 @@ export class MovieView extends React.Component {
             crossOrigin="anonymous"
             src={movie.ImagePath}
           />
+
           <div className="movie-title">
             <span className="label">Title: </span>
             <span className="value">{movie.Title}</span>
