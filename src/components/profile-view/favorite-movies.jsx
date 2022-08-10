@@ -1,17 +1,19 @@
 import React from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
-import { Button, Card, Col } from 'react-bootstrap';
+
+import { Button, Card, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export class FavoriteMoviesView extends React.Component {
   render() {
-    const favorites = localStorage.getItem('favorites');
+    const { movie } = this.props;
+    const username = localStorage.getItem('user');
+    const favorites = [localStorage.getItem('favorites')];
 
     const removeMovie = () => {
       axios
         .delete(
-          `https://sokflix.herokuapp.com/users/${Username}/movies/${MovieID}`,
+          `https://sokflix.herokuapp.com/users/${username}/movies/${movie._id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -25,12 +27,18 @@ export class FavoriteMoviesView extends React.Component {
     if (favorites.length === 0) {
       return (
         <div className="favorite-view">
+          <Card.Title>
+            <h2>Favorite Movies:</h2>
+          </Card.Title>
           No movies have been added to your Favorites
         </div>
       );
     }
     return (
       <Col md={6} lg={4} xl={3}>
+        <Row>
+          <h2>Favorite Movies:</h2>
+        </Row>
         <Card>
           <Link to={`/movies/${movie._id}`}>
             <Card.Img
@@ -59,8 +67,3 @@ export class FavoriteMoviesView extends React.Component {
     );
   }
 }
-
-//1. add a button that changes according to the favorite
-// state based on the localstorage favorites
-// if it finds the movie, button will remove, otherwise add
-//2. display movies that are on the user's favorites list

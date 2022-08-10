@@ -23,7 +23,19 @@ export class MainView extends React.Component {
       user: null,
     };
   }
-
+  addFavorite() {
+    axios
+      .post(
+        `https://sokflix.herokuapp.com/users/${username}/movies/${movieID}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then(res => {
+        alert(`${movie.Title} has been added to your favorites`);
+      })
+      .catch(err => console.log(err));
+  }
   getMovies(token) {
     axios
       .get('https://sokflix.herokuapp.com/movies', {
