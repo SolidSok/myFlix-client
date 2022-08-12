@@ -4,10 +4,6 @@ import { MovieCard } from '../movie-card/movie-card';
 import './genre-view.scss';
 
 export class GenreView extends React.Component {
-  constructor() {
-    super();
-    this.state;
-  }
   render() {
     const { genre, genreMovies, onBackClick } = this.props;
 
@@ -18,7 +14,6 @@ export class GenreView extends React.Component {
           <Card.Text>{genre.Description}</Card.Text>
 
           <Row>
-            {' '}
             {genreMovies.map(movie => (
               <MovieCard key={movie._id} movie={movie}>
                 {movie.title}

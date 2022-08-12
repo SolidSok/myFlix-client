@@ -52,11 +52,10 @@ export function RegistrationView(props) {
       setValues({ ...values, emailErr: 'Email is invalid' });
       isReq = false;
     }
-
     return isReq;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const isReq = validate();
     if (isReq) {
@@ -67,13 +66,13 @@ export function RegistrationView(props) {
           Email: email,
           Birthday: birthday,
         })
-        .then((response) => {
+        .then(response => {
           const data = response.data;
           console.log(data);
           alert('Registration successful, please login!');
           window.open('/', '_self');
         })
-        .catch((response) => {
+        .catch(response => {
           console.error(response);
           alert('unable to register!');
         });
@@ -93,7 +92,7 @@ export function RegistrationView(props) {
                     <Form.Label>Username:</Form.Label>
                     <Form.Control
                       type="text"
-                      onChange={(e) => setUsername(e.target.value)}
+                      onChange={e => setUsername(e.target.value)}
                       required
                       placeholder="Enter a username"
                     />
@@ -104,7 +103,7 @@ export function RegistrationView(props) {
                     <Form.Label>Password:</Form.Label>
                     <Form.Control
                       type="password"
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={e => setPassword(e.target.value)}
                       required
                       placeholder="Enter a password with 8 or more characters"
                     />
@@ -115,7 +114,7 @@ export function RegistrationView(props) {
                     <Form.Label>Email:</Form.Label>
                     <Form.Control
                       type="email"
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={e => setEmail(e.target.value)}
                       required
                       placeholder="Enter an email address"
                     />
@@ -126,15 +125,14 @@ export function RegistrationView(props) {
                     <Form.Label>Birthday:</Form.Label>
                     <Form.Control
                       type="date"
-                      onChange={(e) => setBirthday(e.target.value)}
+                      onChange={e => setBirthday(e.target.value)}
                     />
                   </Form.Group>
 
                   <Button
                     variant="primary"
                     type="submit"
-                    onClick={handleSubmit}
-                  >
+                    onClick={handleSubmit}>
                     Submit
                   </Button>
                 </Form>

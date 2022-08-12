@@ -21,20 +21,22 @@ export class MainView extends React.Component {
     this.state = {
       movies: [],
       user: null,
+      favorites: [],
     };
   }
-  addFavorite() {
+  getFavorites(token, user) {
     axios
-      .post(
-        `https://sokflix.herokuapp.com/users/${username}/movies/${movieID}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
-      .then(res => {
-        alert(`${movie.Title} has been added to your favorites`);
+      .get(`https://sokflix.herokuapp.com/users/${user}`, {
+        headers: { Authorization: `Bearer ${token}` },
       })
-      .catch(err => console.log(err));
+      .then(response => {
+        this.setState({
+          favorites: response.data.FavoriteMovies,
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
   getMovies(token) {
     axios
@@ -54,11 +56,13 @@ export class MainView extends React.Component {
 
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
+    let accessUser = localStorage.getItem('user');
     if (accessToken !== null) {
       this.setState({
         user: localStorage.getItem('user'),
       });
       this.getMovies(accessToken);
+      this.getFavorites(accessToken, accessUser);
     }
   }
 
@@ -66,18 +70,18 @@ export class MainView extends React.Component {
     console.log(authData);
     this.setState({
       user: authData.user.Username,
+      favorites: authData.user.FavoriteMovies,
     });
 
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
     localStorage.setItem('email', authData.user.Email);
     localStorage.setItem('birthday', authData.user.Birthday);
-    localStorage.setItem('favorites', authData.user.FavoriteMovies);
     this.getMovies(authData.token);
   }
 
   render() {
-    const { movies, user } = this.state;
+    const { movies, user, favorites } = this.state;
 
     return (
       <Router>
@@ -202,6 +206,7 @@ export class MainView extends React.Component {
                     movies={movies}
                     user={user}
                     onBackClick={() => history.goBack()}
+                    favorites={favorites}
                   />
                 </Col>
               );

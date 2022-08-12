@@ -90,65 +90,55 @@ export function UpdateUserView() {
 
   return (
     <Container>
-      <Row>
-        <Col>
-          <CardGroup>
-            <Card>
-              <Card.Body>
-                <Card.Title>
-                  Want to update your info? Fill out the forms below!
-                </Card.Title>
-                <Form>
-                  <Form.Group controlId="formUsername">
-                    <Form.Label>Username:</Form.Label>
-                    <Form.Control
-                      type="text"
-                      onChange={e => updateUser(e.target.value)}
-                      required
-                      placeholder="Enter a username"
-                    />
-                    {values.usernameErr && <p>{values.usernameErr}</p>}
-                  </Form.Group>
+      <Card.Title>
+        <h3>Want to update your info? Fill out the forms below!</h3>
+      </Card.Title>
+      <Form>
+        <Form.Group controlId="formUsername">
+          <Form.Label>Username:</Form.Label>
+          <Form.Control
+            type="text"
+            onChange={e => updateUser(e.target.value)}
+            required
+            placeholder="Enter a username"
+          />
+          {values.usernameErr && <p>{values.usernameErr}</p>}
+        </Form.Group>
 
-                  <Form.Group controlId="formPassword">
-                    <Form.Label>Password:</Form.Label>
-                    <Form.Control
-                      type="password"
-                      onChange={e => updatePassword(e.target.value)}
-                      required
-                      placeholder="Enter a password with 8 or more characters"
-                    />
-                    {values.passwordErr && <p>{values.passwordErr}</p>}
-                  </Form.Group>
+        <Form.Group controlId="formPassword">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control
+            type="password"
+            onChange={e => updatePassword(e.target.value)}
+            required
+            placeholder="Enter a password with 8 or more characters"
+          />
+          {values.passwordErr && <p>{values.passwordErr}</p>}
+        </Form.Group>
 
-                  <Form.Group controlId="formEmail">
-                    <Form.Label>Email:</Form.Label>
-                    <Form.Control
-                      type="email"
-                      onChange={e => updateEmail(e.target.value)}
-                      required
-                      placeholder="Enter an email address"
-                    />
-                    {values.emailErr && <p>{values.emailErr}</p>}
-                  </Form.Group>
+        <Form.Group controlId="formEmail">
+          <Form.Label>Email:</Form.Label>
+          <Form.Control
+            type="email"
+            onChange={e => updateEmail(e.target.value)}
+            required
+            placeholder="Enter an email address"
+          />
+          {values.emailErr && <p>{values.emailErr}</p>}
+        </Form.Group>
 
-                  <Form.Group controlId="formBirthday">
-                    <Form.Label>Birthday:</Form.Label>
-                    <Form.Control
-                      type="date"
-                      onChange={e => updateBirthday(e.target.value)}
-                    />
-                  </Form.Group>
+        <Form.Group controlId="formBirthday">
+          <Form.Label>Birthday:</Form.Label>
+          <Form.Control
+            type="date"
+            onChange={e => updateBirthday(e.target.value)}
+          />
+        </Form.Group>
 
-                  <Button variant="primary" type="submit" onClick={update}>
-                    Submit
-                  </Button>
-                </Form>
-              </Card.Body>
-            </Card>
-          </CardGroup>
-        </Col>
-      </Row>
+        <Button variant="primary" type="submit" onClick={update}>
+          Submit
+        </Button>
+      </Form>
     </Container>
   );
 }
