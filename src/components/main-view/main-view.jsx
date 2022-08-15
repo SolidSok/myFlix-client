@@ -1,8 +1,13 @@
 import React from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
 import './main-view.scss';
+
+import { setMovies } from '../../actions/actions';
+
+import MoviesList from '../movies-list/movies-list';
 
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
@@ -14,12 +19,11 @@ import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
 
-export class MainView extends React.Component {
+class MainView extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      movies: [],
       user: null,
       favorites: [],
     };
@@ -38,16 +42,14 @@ export class MainView extends React.Component {
         console.log(error);
       });
   }
+
   getMovies(token) {
     axios
       .get('https://sokflix.herokuapp.com/movies', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(response => {
-        // Assign the result to the state
-        this.setState({
-          movies: response.data,
-        });
+        this.props.setMovies(response.data);
       })
       .catch(error => {
         console.log(error);
@@ -81,7 +83,8 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, user, favorites } = this.state;
+    const { user, favorites } = this.state;
+    let { movies } = this.props;
 
     return (
       <Router>
@@ -100,7 +103,7 @@ export class MainView extends React.Component {
               if (movies.length === 0)
                 return <div className="main-view">Loading information...</div>;
 
-              return movies.map(m => <MovieCard key={m._id} movie={m} />);
+              return <MoviesList movies={movies} />;
             }}
           />
 
@@ -228,4 +231,8 @@ export class MainView extends React.Component {
     );
   }
 }
-export default MainView;
+
+let mapStateToProps = state => {
+  return { movies: state.movies };
+};
+export default connect(mapStateToProps, { setMovies })(MainView);
