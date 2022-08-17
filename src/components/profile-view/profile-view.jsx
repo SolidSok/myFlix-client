@@ -10,23 +10,27 @@ import {
 } from '../../actions/actions';
 import { UpdateUserView } from './update-user';
 
-import { Button, Card, Row, Container, Col } from 'react-bootstrap';
-
+import { Button, Card, Row, Container, Col, Modal } from 'react-bootstrap';
+import { useState } from 'react';
 import { FavoriteMoviesCard } from './favorite-movies';
 import { UserInfo } from './user-info';
 
 export const ProfileView = props => {
   const { onBackClick, userInfo } = props;
   const user = localStorage.getItem('user');
-
   const token = localStorage.getItem('token');
 
-  const favorites = props.userInfo.FavoriteMovies;
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const favoriteMovies = props.movies.filter(id => {
     return props.userInfo.FavoriteMovies.some(mID => {
-      return mID === id._id;
+      return mID == id._id;
     });
   });
+
   function deleteUser() {
     axios
       .delete(`https://sokflix.herokuapp.com/users/${user}`, {
@@ -42,26 +46,42 @@ export const ProfileView = props => {
 
   return (
     <Container>
-      <Button
-        variant="warning"
-        onClick={() => {
-          onBackClick();
-        }}>
-        Back
-      </Button>
+      <div className="d-grid gap-2">
+        <Button
+          variant="warning"
+          size="lg"
+          onClick={() => {
+            onBackClick();
+          }}>
+          Back
+        </Button>
+      </div>
       <Row>
         <Col xs={12} sm={10} md={6}>
           <Card>
             <Card.Body>
               <UserInfo user={user} userInfo={props.userInfo} />
             </Card.Body>
-            <Button
-              variant="danger"
-              onClick={() => {
-                deleteUser();
-              }}>
+            <Button variant="danger" onClick={handleShow}>
               Delete your account
             </Button>
+
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header>
+                <Modal.Title>Delete your account?</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                Are you sure you want to delete your account?
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                  Cancel
+                </Button>
+                <Button variant="primary" onClick={deleteUser}>
+                  Yes, delete my acount
+                </Button>
+              </Modal.Footer>
+            </Modal>
           </Card>
         </Col>
         <Col xs={12} sm={10} md={6}>

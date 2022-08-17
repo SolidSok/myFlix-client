@@ -24,7 +24,9 @@ export function Navbar({ user, userInfo, genres, directors }) {
       return false;
     }
   };
-
+  const topButton = () => {
+    document.documentElement.scrollTop = 0;
+  };
   return (
     <Navbar
       className="main-nav"
@@ -36,6 +38,9 @@ export function Navbar({ user, userInfo, genres, directors }) {
         <Navbar.Brand className="navbar-logo" href="/">
           sokFlixCinema
         </Navbar.Brand>
+        <Button onClick={topButton} variant="outline-secondary">
+          Top
+        </Button>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ml-auto">

@@ -44870,6 +44870,9 @@ function Navbar({ user , userInfo , genres , directors  }) {
         if (localStorage.getItem('token')) return localStorage.getItem('token');
         else return false;
     };
+    const topButton = ()=>{
+        document.documentElement.scrollTop = 0;
+    };
     return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar, {
         className: "main-nav",
         sticky: "top",
@@ -44878,14 +44881,14 @@ function Navbar({ user , userInfo , genres , directors  }) {
         variant: "dark",
         __source: {
             fileName: "src/components/navbar/navbar.jsx",
-            lineNumber: 29
+            lineNumber: 31
         },
         __self: this,
         children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
             fluid: true,
             __source: {
                 fileName: "src/components/navbar/navbar.jsx",
-                lineNumber: 35
+                lineNumber: 37
             },
             __self: this,
             children: [
@@ -44894,16 +44897,26 @@ function Navbar({ user , userInfo , genres , directors  }) {
                     href: "/",
                     __source: {
                         fileName: "src/components/navbar/navbar.jsx",
-                        lineNumber: 36
+                        lineNumber: 38
                     },
                     __self: this,
                     children: "sokFlixCinema"
+                }),
+                /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                    onClick: topButton,
+                    variant: "outline-secondary",
+                    __source: {
+                        fileName: "src/components/navbar/navbar.jsx",
+                        lineNumber: 41
+                    },
+                    __self: this,
+                    children: "Top"
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Toggle, {
                     "aria-controls": "responsive-navbar-nav",
                     __source: {
                         fileName: "src/components/navbar/navbar.jsx",
-                        lineNumber: 39
+                        lineNumber: 44
                     },
                     __self: this
                 }),
@@ -44911,14 +44924,14 @@ function Navbar({ user , userInfo , genres , directors  }) {
                     id: "responsive-navbar-nav",
                     __source: {
                         fileName: "src/components/navbar/navbar.jsx",
-                        lineNumber: 40
+                        lineNumber: 45
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Nav, {
                         className: "ml-auto",
                         __source: {
                             fileName: "src/components/navbar/navbar.jsx",
-                            lineNumber: 41
+                            lineNumber: 46
                         },
                         __self: this,
                         children: [
@@ -44927,7 +44940,7 @@ function Navbar({ user , userInfo , genres , directors  }) {
                                 className: "genres",
                                 __source: {
                                     fileName: "src/components/navbar/navbar.jsx",
-                                    lineNumber: 42
+                                    lineNumber: 47
                                 },
                                 __self: this,
                                 children: genres.map((genre)=>{
@@ -44935,21 +44948,21 @@ function Navbar({ user , userInfo , genres , directors  }) {
                                         className: "genre-items",
                                         __source: {
                                             fileName: "src/components/navbar/navbar.jsx",
-                                            lineNumber: 45
+                                            lineNumber: 50
                                         },
                                         __self: this,
                                         children: /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
                                             to: `/genres/${genre.Name}`,
                                             __source: {
                                                 fileName: "src/components/navbar/navbar.jsx",
-                                                lineNumber: 46
+                                                lineNumber: 51
                                             },
                                             __self: this,
                                             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
                                                 variant: "secondary",
                                                 __source: {
                                                     fileName: "src/components/navbar/navbar.jsx",
-                                                    lineNumber: 47
+                                                    lineNumber: 52
                                                 },
                                                 __self: this,
                                                 children: genre.Name
@@ -44961,7 +44974,7 @@ function Navbar({ user , userInfo , genres , directors  }) {
                             /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Dropdown.Divider, {
                                 __source: {
                                     fileName: "src/components/navbar/navbar.jsx",
-                                    lineNumber: 53
+                                    lineNumber: 58
                                 },
                                 __self: this
                             }),
@@ -44970,7 +44983,7 @@ function Navbar({ user , userInfo , genres , directors  }) {
                                 className: "directors",
                                 __source: {
                                     fileName: "src/components/navbar/navbar.jsx",
-                                    lineNumber: 54
+                                    lineNumber: 59
                                 },
                                 __self: this,
                                 children: directors.map((director)=>{
@@ -44978,21 +44991,21 @@ function Navbar({ user , userInfo , genres , directors  }) {
                                         className: "director-items",
                                         __source: {
                                             fileName: "src/components/navbar/navbar.jsx",
-                                            lineNumber: 57
+                                            lineNumber: 62
                                         },
                                         __self: this,
                                         children: /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
                                             to: `/directors/${director.Name}`,
                                             __source: {
                                                 fileName: "src/components/navbar/navbar.jsx",
-                                                lineNumber: 60
+                                                lineNumber: 65
                                             },
                                             __self: this,
                                             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
                                                 variant: "secondary",
                                                 __source: {
                                                     fileName: "src/components/navbar/navbar.jsx",
-                                                    lineNumber: 61
+                                                    lineNumber: 66
                                                 },
                                                 __self: this,
                                                 children: director.Name
@@ -45004,7 +45017,7 @@ function Navbar({ user , userInfo , genres , directors  }) {
                             /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Dropdown.Divider, {
                                 __source: {
                                     fileName: "src/components/navbar/navbar.jsx",
-                                    lineNumber: 67
+                                    lineNumber: 72
                                 },
                                 __self: this
                             }),
@@ -45012,13 +45025,13 @@ function Navbar({ user , userInfo , genres , directors  }) {
                                 href: `/users/${user}`,
                                 __source: {
                                     fileName: "src/components/navbar/navbar.jsx",
-                                    lineNumber: 69
+                                    lineNumber: 74
                                 },
                                 __self: this,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx("b", {
                                     __source: {
                                         fileName: "src/components/navbar/navbar.jsx",
-                                        lineNumber: 70
+                                        lineNumber: 75
                                     },
                                     __self: this,
                                     children: user
@@ -45029,7 +45042,7 @@ function Navbar({ user , userInfo , genres , directors  }) {
                                 onClick: onLoggedOut,
                                 __source: {
                                     fileName: "src/components/navbar/navbar.jsx",
-                                    lineNumber: 75
+                                    lineNumber: 80
                                 },
                                 __self: this,
                                 children: "Logout"
@@ -45038,7 +45051,7 @@ function Navbar({ user , userInfo , genres , directors  }) {
                                 href: "/",
                                 __source: {
                                     fileName: "src/components/navbar/navbar.jsx",
-                                    lineNumber: 80
+                                    lineNumber: 85
                                 },
                                 __self: this,
                                 children: "Sign-in"
@@ -45047,7 +45060,7 @@ function Navbar({ user , userInfo , genres , directors  }) {
                                 href: "/register",
                                 __source: {
                                     fileName: "src/components/navbar/navbar.jsx",
-                                    lineNumber: 81
+                                    lineNumber: 86
                                 },
                                 __self: this,
                                 children: "Sign-up"
@@ -45454,14 +45467,20 @@ var _updateUser = require("./update-user");
 var _reactBootstrap = require("react-bootstrap");
 var _favoriteMovies = require("./favorite-movies");
 var _userInfo = require("./user-info");
+var _s = $RefreshSig$();
 const ProfileView = (props)=>{
+    _s();
     const { onBackClick , userInfo  } = props;
     const user = localStorage.getItem('user');
     const token = localStorage.getItem('token');
-    const favorites = props.userInfo.FavoriteMovies;
+    const [show, setShow] = _react.useState(false);
+    const handleClose = ()=>setShow(false)
+    ;
+    const handleShow = ()=>setShow(true)
+    ;
     const favoriteMovies = props.movies.filter((id)=>{
         return props.userInfo.FavoriteMovies.some((mID)=>{
-            return mID === id._id;
+            return mID == id._id;
         });
     });
     function deleteUser() {
@@ -45479,26 +45498,35 @@ const ProfileView = (props)=>{
     return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 44
+            lineNumber: 48
         },
         __self: undefined,
         children: [
-            /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                variant: "warning",
-                onClick: ()=>{
-                    onBackClick();
-                },
+            /*#__PURE__*/ _jsxRuntime.jsx("div", {
+                className: "d-grid gap-2",
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 45
+                    lineNumber: 49
                 },
                 __self: undefined,
-                children: "Back"
+                children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                    variant: "warning",
+                    size: "lg",
+                    onClick: ()=>{
+                        onBackClick();
+                    },
+                    __source: {
+                        fileName: "src/components/profile-view/profile-view.jsx",
+                        lineNumber: 50
+                    },
+                    __self: undefined,
+                    children: "Back"
+                })
             }),
             /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Row, {
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 52
+                    lineNumber: 59
                 },
                 __self: undefined,
                 children: [
@@ -45508,20 +45536,20 @@ const ProfileView = (props)=>{
                         md: 6,
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 53
+                            lineNumber: 60
                         },
                         __self: undefined,
                         children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Card, {
                             __source: {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 54
+                                lineNumber: 61
                             },
                             __self: undefined,
                             children: [
                                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Body, {
                                     __source: {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 55
+                                        lineNumber: 62
                                     },
                                     __self: undefined,
                                     children: /*#__PURE__*/ _jsxRuntime.jsx(_userInfo.UserInfo, {
@@ -45529,22 +45557,83 @@ const ProfileView = (props)=>{
                                         userInfo: props.userInfo,
                                         __source: {
                                             fileName: "src/components/profile-view/profile-view.jsx",
-                                            lineNumber: 56
+                                            lineNumber: 63
                                         },
                                         __self: undefined
                                     })
                                 }),
                                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
                                     variant: "danger",
-                                    onClick: ()=>{
-                                        deleteUser();
-                                    },
+                                    onClick: handleShow,
                                     __source: {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 58
+                                        lineNumber: 65
                                     },
                                     __self: undefined,
                                     children: "Delete your account"
+                                }),
+                                /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Modal, {
+                                    show: show,
+                                    onHide: handleClose,
+                                    __source: {
+                                        fileName: "src/components/profile-view/profile-view.jsx",
+                                        lineNumber: 69
+                                    },
+                                    __self: undefined,
+                                    children: [
+                                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Modal.Header, {
+                                            __source: {
+                                                fileName: "src/components/profile-view/profile-view.jsx",
+                                                lineNumber: 70
+                                            },
+                                            __self: undefined,
+                                            children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Modal.Title, {
+                                                __source: {
+                                                    fileName: "src/components/profile-view/profile-view.jsx",
+                                                    lineNumber: 71
+                                                },
+                                                __self: undefined,
+                                                children: "Delete your account?"
+                                            })
+                                        }),
+                                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Modal.Body, {
+                                            __source: {
+                                                fileName: "src/components/profile-view/profile-view.jsx",
+                                                lineNumber: 73
+                                            },
+                                            __self: undefined,
+                                            children: "Are you sure you want to delete your account?"
+                                        }),
+                                        /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Modal.Footer, {
+                                            __source: {
+                                                fileName: "src/components/profile-view/profile-view.jsx",
+                                                lineNumber: 76
+                                            },
+                                            __self: undefined,
+                                            children: [
+                                                /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                                                    variant: "secondary",
+                                                    onClick: handleClose,
+                                                    __source: {
+                                                        fileName: "src/components/profile-view/profile-view.jsx",
+                                                        lineNumber: 77
+                                                    },
+                                                    __self: undefined,
+                                                    children: "Cancel"
+                                                }),
+                                                /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                                                    variant: "primary",
+                                                    onClick: deleteUser,
+                                                    __source: {
+                                                        fileName: "src/components/profile-view/profile-view.jsx",
+                                                        lineNumber: 80
+                                                    },
+                                                    __self: undefined,
+                                                    children: "Yes, delete my acount"
+                                                })
+                                            ]
+                                        })
+                                    ]
                                 })
                             ]
                         })
@@ -45555,19 +45644,19 @@ const ProfileView = (props)=>{
                         md: 6,
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 67
+                            lineNumber: 87
                         },
                         __self: undefined,
                         children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card, {
                             __source: {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 68
+                                lineNumber: 88
                             },
                             __self: undefined,
                             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Body, {
                                 __source: {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 69
+                                    lineNumber: 89
                                 },
                                 __self: undefined,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx(_updateUser.UpdateUserView, {
@@ -45575,7 +45664,7 @@ const ProfileView = (props)=>{
                                     userInfo: userInfo,
                                     __source: {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 70
+                                        lineNumber: 90
                                     },
                                     __self: undefined
                                 })
@@ -45587,33 +45676,33 @@ const ProfileView = (props)=>{
             /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card, {
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 75
+                    lineNumber: 95
                 },
                 __self: undefined,
                 children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Card.Body, {
                     __source: {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 76
+                        lineNumber: 96
                     },
                     __self: undefined,
                     children: [
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
                             __source: {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 77
+                                lineNumber: 97
                             },
                             __self: undefined,
                             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                                 xs: 12,
                                 __source: {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 78
+                                    lineNumber: 98
                                 },
                                 __self: undefined,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx("h2", {
                                     __source: {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 79
+                                        lineNumber: 99
                                     },
                                     __self: undefined,
                                     children: "Favorite Movies:"
@@ -45623,13 +45712,13 @@ const ProfileView = (props)=>{
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
                             __source: {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 82
+                                lineNumber: 102
                             },
                             __self: undefined,
                             children: favoriteMovies.length === 0 ? /*#__PURE__*/ _jsxRuntime.jsx("p", {
                                 __source: {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 84
+                                    lineNumber: 104
                                 },
                                 __self: undefined,
                                 children: "No movies have been added to your Favorites"
@@ -45641,7 +45730,7 @@ const ProfileView = (props)=>{
                                     xl: 3,
                                     __source: {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 88
+                                        lineNumber: 108
                                     },
                                     __self: undefined,
                                     children: [
@@ -45652,7 +45741,7 @@ const ProfileView = (props)=>{
                                             token: token,
                                             __source: {
                                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                                lineNumber: 90
+                                                lineNumber: 110
                                             },
                                             __self: undefined
                                         })
@@ -45666,6 +45755,7 @@ const ProfileView = (props)=>{
         ]
     }));
 };
+_s(ProfileView, "NKb1ZOdhT+qUsWLXSgjSS2bk2C4=");
 _c = ProfileView;
 let mapStateToProps = (state)=>{
     return {
@@ -47616,7 +47706,7 @@ $RefreshReg$(_c, "UpdateUserView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","axios":"iYoWk","react":"6TuXu","react-bootstrap":"h2YVd","@parcel/transformer-js/src/esmodule-helpers.js":"Y5bzz","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"gCuqz","react-redux":"2L0if","../../actions/actions":"1Ttfj"}],"gKhXS":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","axios":"iYoWk","react":"6TuXu","react-redux":"2L0if","react-bootstrap":"h2YVd","../../actions/actions":"1Ttfj","@parcel/transformer-js/src/esmodule-helpers.js":"Y5bzz","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"gCuqz"}],"gKhXS":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$7994 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
