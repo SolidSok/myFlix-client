@@ -21,10 +21,12 @@ export const ProfileView = props => {
 
   const token = localStorage.getItem('token');
 
-  const favoriteMovies = props.movies.filter(({ _id }) =>
-    props.userInfo.FavoriteMovies.includes(_id)
-  );
-
+  const favorites = props.userInfo.FavoriteMovies;
+  const favoriteMovies = props.movies.filter(id => {
+    return props.userInfo.FavoriteMovies.some(mID => {
+      return mID === id._id;
+    });
+  });
   function deleteUser() {
     axios
       .delete(`https://sokflix.herokuapp.com/users/${user}`, {
@@ -65,7 +67,7 @@ export const ProfileView = props => {
         <Col xs={12} sm={10} md={6}>
           <Card>
             <Card.Body>
-              <UpdateUserView />
+              <UpdateUserView user={user} userInfo={userInfo} />
             </Card.Body>
           </Card>
         </Col>

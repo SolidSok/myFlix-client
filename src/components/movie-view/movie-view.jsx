@@ -19,35 +19,45 @@ export class MovieView extends React.Component {
             />
 
             <Card.Title className="movie-title">
-              <span className="label">Title: </span>
-              <span className="value">{movie.Title}</span>
+              <h2>
+                <span className="label">Title: </span>
+                <span className="value">{movie.Title}</span>
+              </h2>
             </Card.Title>
             <div className="movie-description">
-              <span className="label">Description: </span>
+              <h5>
+                <span className="label">Description: </span>
+              </h5>
             </div>
             <div>
               <span className="value">{movie.Description}</span>
             </div>
             <div className="movie-genre">
-              <span className="label">Genre: </span>{' '}
+              <h5>
+                <span className="label">Genre: </span>
+              </h5>
               <Link to={`/genres/${movie.Genre.Name}`}>
-                <Button variant="info">{movie.Genre.Name}</Button>
+                <Button variant="dark">{movie.Genre.Name}</Button>
               </Link>
             </div>
             <div className="movie-director">
-              <span className="label">Director: </span>
+              <h5>
+                <span className="label">Director: </span>
+              </h5>
               <Link to={`/directors/${movie.Director.Name}`}>
-                <Button variant="outline-info">{movie.Director.Name}</Button>
+                <Button variant="dark">{movie.Director.Name}</Button>
               </Link>
             </div>
-
-            <Button
-              variant="warning"
-              onClick={() => {
-                onBackClick(null);
-              }}>
-              Back
-            </Button>
+            <br />
+            <div>
+              <Button
+                variant="warning"
+                onClick={() => {
+                  onBackClick(null);
+                }}>
+                Back
+              </Button>
+            </div>
           </div>
         </Stack>
       </Card>

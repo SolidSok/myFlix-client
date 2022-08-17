@@ -205,7 +205,7 @@ class MainView extends React.Component {
           />
 
           <Route
-            path={`/users/${user}`}
+            path={`/users/${userInfo.Username}`}
             render={({ history }) => {
               if (!user)
                 return (

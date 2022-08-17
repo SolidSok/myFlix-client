@@ -65,7 +65,11 @@ export function Navbar({ user, userInfo, genres, directors }) {
               })}
             </NavDropdown>
             <Dropdown.Divider />
-            {isAuth() && <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>}
+            {isAuth() && (
+              <Nav.Link href={`/users/${user}`}>
+                <b>{user}</b>
+              </Nav.Link>
+            )}
 
             {isAuth() && (
               <Button variant="link" onClick={onLoggedOut}>

@@ -1,9 +1,18 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { Container, Button, Card, Form } from 'react-bootstrap';
+import {
+  setMovies,
+  setUser,
+  setUserInfo,
+  setDirectors,
+  setGenres,
+} from '../../actions/actions';
 
-export function UpdateUserView() {
-  const [user, updateUser] = useState('');
+export function UpdateUserView(props) {
+  const { user, userInfo } = props;
+  const [username, updateUsername] = useState('');
   const [password, updatePassword] = useState('');
   const [email, updateEmail] = useState('');
   const [birthday, updateBirthday] = useState('');
@@ -15,10 +24,10 @@ export function UpdateUserView() {
 
   const updateValidate = () => {
     let isReq = true;
-    if (!user) {
+    if (!username) {
       setValues({ ...values, usernameErr: 'Username is required' });
       isReq = false;
-    } else if (user.length < 4) {
+    } else if (username.length < 4) {
       setValues({
         ...values,
         usernameErr: 'Username must be at least 4 characters long',
@@ -52,9 +61,9 @@ export function UpdateUserView() {
       const token = localStorage.getItem('token');
       axios
         .put(
-          `https://sokflix.herokuapp.com/users/${user}`,
+          `https://sokflix.herokuapp.com/users/${props.user}`,
           {
-            Username: user,
+            Username: username,
             Password: password,
             Email: email,
             Birthday: birthday,
@@ -67,16 +76,13 @@ export function UpdateUserView() {
           const data = response.data;
           console.log(data);
           alert('update succesful!');
-          window.open('/', '_self');
+          localStorage.setItem('user', username);
+          window.open(`/users/${username}`, '_self');
         })
         .catch(response => {
           console.error(response);
           alert('unable to update!');
         });
-      localStorage.setItem('user', user);
-      localStorage.setItem('password', password);
-      localStorage.setItem('email', email);
-      localStorage.setItem('birthday', birthday);
     }
   };
 
@@ -90,7 +96,7 @@ export function UpdateUserView() {
           <Form.Label>Username:</Form.Label>
           <Form.Control
             type="text"
-            onChange={e => updateUser(e.target.value)}
+            onChange={e => updateUsername(e.target.value)}
             required
             placeholder="Enter a username"
           />
@@ -134,3 +140,20 @@ export function UpdateUserView() {
     </Container>
   );
 }
+
+let mapStateToProps = state => {
+  return {
+    movies: state.movies,
+    user: state.user,
+    userInfo: state.userInfo,
+    genres: state.genres,
+    directors: state.directors,
+  };
+};
+export default connect(mapStateToProps, {
+  setMovies,
+  setUser,
+  setUserInfo,
+  setDirectors,
+  setGenres,
+})(UpdateUserView);
