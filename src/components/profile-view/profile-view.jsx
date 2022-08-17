@@ -1,5 +1,13 @@
 import React from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import {
+  setMovies,
+  setUser,
+  setUserInfo,
+  setDirectors,
+  setGenres,
+} from '../../actions/actions';
 import { UpdateUserView } from './update-user';
 
 import { Button, Card, Row, Container, Col } from 'react-bootstrap';
@@ -8,21 +16,18 @@ import { FavoriteMoviesCard } from './favorite-movies';
 import { UserInfo } from './user-info';
 
 export const ProfileView = props => {
-  const { onBackClick, movies, favorites } = props;
-  const username = localStorage.getItem('user');
-  const email = localStorage.getItem('email');
-  const birthday = localStorage.getItem('birthday');
+  const { onBackClick, userInfo } = props;
+  const user = localStorage.getItem('user');
+
   const token = localStorage.getItem('token');
 
-  const favoriteMovies = props.movies.filter(id => {
-    return props.favorites.some(mID => {
-      return mID === id._id;
-    });
-  });
+  const favoriteMovies = props.movies.filter(({ _id }) =>
+    props.userInfo.FavoriteMovies.includes(_id)
+  );
 
   function deleteUser() {
     axios
-      .delete(`https://sokflix.herokuapp.com/users/${username}`, {
+      .delete(`https://sokflix.herokuapp.com/users/${user}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(res => {
@@ -46,7 +51,7 @@ export const ProfileView = props => {
         <Col xs={12} sm={10} md={6}>
           <Card>
             <Card.Body>
-              <UserInfo />
+              <UserInfo user={user} userInfo={props.userInfo} />
             </Card.Body>
             <Button
               variant="danger"
@@ -78,14 +83,9 @@ export const ProfileView = props => {
             ) : (
               favoriteMovies.map(m => {
                 return (
-                  <Col xs={12} md={6} lg={4} xl={3}>
+                  <Col xs={12} md={6} lg={4} xl={3} key={m._id}>
                     {' '}
-                    <FavoriteMoviesCard
-                      username={username}
-                      key={m._id}
-                      movie={m}
-                      token={token}
-                    />
+                    <FavoriteMoviesCard user={user} movie={m} token={token} />
                   </Col>
                 );
               })
@@ -96,3 +96,19 @@ export const ProfileView = props => {
     </Container>
   );
 };
+let mapStateToProps = state => {
+  return {
+    movies: state.movies,
+    user: state.user,
+    userInfo: state.userInfo,
+    genres: state.genres,
+    directors: state.directors,
+  };
+};
+export default connect(mapStateToProps, {
+  setMovies,
+  setUser,
+  setUserInfo,
+  setDirectors,
+  setGenres,
+})(ProfileView);

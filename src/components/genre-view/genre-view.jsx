@@ -9,10 +9,12 @@ export class GenreView extends React.Component {
 
     return (
       <Card>
-        <Card.Header>{genre.Name}</Card.Header>
+        <Card.Header>
+          <h2>{genre.Name}</h2>
+        </Card.Header>
         <Card.Body>
           <Card.Text>{genre.Description}</Card.Text>
-
+          <h3>Movies in this Genre:</h3>
           <Row>
             {genreMovies.map(movie => (
               <MovieCard key={movie._id} movie={movie}>

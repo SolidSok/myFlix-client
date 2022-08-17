@@ -2,11 +2,11 @@ import { combineReducers } from 'redux';
 
 import {
   SET_DIRECTORS,
-  SET_FAVORITES,
   SET_FILTER,
   SET_GENRES,
   SET_MOVIES,
   SET_USER,
+  SET_USERINFO,
 } from '../actions/actions';
 
 function visibilityFilter(state = '', action) {
@@ -36,15 +36,6 @@ function user(state = null, action) {
   }
 }
 
-function favorites(state = [], action) {
-  switch (action.type) {
-    case SET_FAVORITES:
-      return action.value;
-    default:
-      return state;
-  }
-}
-
 function genres(state = [], action) {
   switch (action.type) {
     case SET_GENRES:
@@ -63,11 +54,19 @@ function directors(state = [], action) {
   }
 }
 
+function userInfo(state = '', action) {
+  switch (action.type) {
+    case SET_USERINFO:
+      return action.value;
+    default:
+      return state;
+  }
+}
 const moviesApp = combineReducers({
   visibilityFilter,
   movies,
   user,
-  favorites,
+  userInfo,
   genres,
   directors,
 });

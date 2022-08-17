@@ -8,7 +8,7 @@ import './main-view.scss';
 import {
   setMovies,
   setUser,
-  setFavorites,
+  setUserInfo,
   setDirectors,
   setGenres,
 } from '../../actions/actions';
@@ -25,13 +25,13 @@ import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
 
 class MainView extends React.Component {
-  getFavorites(token, user) {
+  getUserInfo(token, user) {
     axios
       .get(`https://sokflix.herokuapp.com/users/${user}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(response => {
-        this.props.setFavorites(response.data.FavoriteMovies);
+        this.props.setUserInfo(response.data);
       })
       .catch(error => {
         console.log(error);
@@ -80,7 +80,7 @@ class MainView extends React.Component {
     if (accessToken !== null) {
       this.props.setUser(localStorage.getItem('user'));
       this.getMovies(accessToken);
-      this.getFavorites(accessToken, accessUser);
+      this.getUserInfo(accessToken, accessUser);
       this.getDirectors(accessToken);
       this.getGenres(accessToken);
     }
@@ -88,20 +88,16 @@ class MainView extends React.Component {
 
   onLoggedIn(authData) {
     console.log(authData);
-    this.setState({
-      user: authData.user.Username,
-      favorites: authData.user.FavoriteMovies,
-    });
+    this.props.setUser(authData.user);
 
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
-    localStorage.setItem('email', authData.user.Email);
-    localStorage.setItem('birthday', authData.user.Birthday);
+
     this.getMovies(authData.token);
   }
 
   render() {
-    let { movies, user, favorites, genres, directors } = this.props;
+    let { movies, user, userInfo, genres, directors } = this.props;
 
     return (
       <Router>
@@ -225,8 +221,8 @@ class MainView extends React.Component {
                   <ProfileView
                     movies={movies}
                     user={user}
+                    userInfo={userInfo}
                     onBackClick={() => history.goBack()}
-                    favorites={favorites}
                   />
                 </Col>
               );
@@ -253,7 +249,7 @@ let mapStateToProps = state => {
   return {
     movies: state.movies,
     user: state.user,
-    favorites: state.favorites,
+    userInfo: state.userInfo,
     genres: state.genres,
     directors: state.directors,
   };
@@ -261,7 +257,7 @@ let mapStateToProps = state => {
 export default connect(mapStateToProps, {
   setMovies,
   setUser,
-  setFavorites,
+  setUserInfo,
   setDirectors,
   setGenres,
 })(MainView);

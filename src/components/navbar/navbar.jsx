@@ -9,7 +9,7 @@ import {
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-export function Navbar({ user, genres, directors }) {
+export function Navbar({ user, userInfo, genres, directors }) {
   const onLoggedOut = () => {
     localStorage.clear();
     window.open('/', '_self');
@@ -43,7 +43,7 @@ export function Navbar({ user, genres, directors }) {
               {genres.map(genre => {
                 return (
                   <NavDropdown.Item className="genre-items" key={genre.Name}>
-                    <Link to={`movies/genres/${genre.Name}`}>
+                    <Link to={`/genres/${genre.Name}`}>
                       <Button variant="secondary">{genre.Name}</Button>
                     </Link>
                   </NavDropdown.Item>
@@ -54,8 +54,10 @@ export function Navbar({ user, genres, directors }) {
             <NavDropdown title="Directors" className="directors">
               {directors.map(director => {
                 return (
-                  <NavDropdown.Item className="genre-items" key={director.Name}>
-                    <Link to={`/genres/${director.Name}`}>
+                  <NavDropdown.Item
+                    className="director-items"
+                    key={director.Name}>
+                    <Link to={`/directors/${director.Name}`}>
                       <Button variant="secondary">{director.Name}</Button>
                     </Link>
                   </NavDropdown.Item>
@@ -63,9 +65,7 @@ export function Navbar({ user, genres, directors }) {
               })}
             </NavDropdown>
             <Dropdown.Divider />
-            {isAuth() && (
-              <Nav.Link href={`/users/${user}`}>Your Profile</Nav.Link>
-            )}
+            {isAuth() && <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>}
 
             {isAuth() && (
               <Button variant="link" onClick={onLoggedOut}>

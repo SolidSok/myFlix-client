@@ -1,24 +1,14 @@
 import React from 'react';
-import {
-  Container,
-  Row,
-  Col,
-  Button,
-  Card,
-  CardGroup,
-  Form,
-} from 'react-bootstrap';
+import { Container, Card } from 'react-bootstrap';
 
 export const UserInfo = props => {
-  const username = localStorage.getItem('user');
-  const email = localStorage.getItem('email');
-  const birthday = localStorage.getItem('birthday');
+  const { user, userInfo } = props;
   return (
     <Container>
       <h2>Profile</h2>
-      <Card.Text>Username: {username}</Card.Text>
-      <Card.Text>Email: {email}</Card.Text>
-      <Card.Text>Birthday: {birthday}</Card.Text>
+      <Card.Text>Username: {props.userInfo.Username}</Card.Text>
+      <Card.Text>Email: {props.userInfo.Email}</Card.Text>
+      <Card.Text>Birthday: {props.userInfo.Birthday}</Card.Text>
     </Container>
   );
 };

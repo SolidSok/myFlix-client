@@ -1,22 +1,21 @@
 import React from 'react';
 
-import { Card, Col, Container, Row, Button } from 'react-bootstrap';
+import { Card, Row, Button } from 'react-bootstrap';
 import { MovieCard } from '../movie-card/movie-card';
 import './director-view.scss';
 
 export class DirectorView extends React.Component {
-  constructor() {
-    super();
-    this.state;
-  }
   render() {
     const { director, directorMovies, onBackClick } = this.props;
 
     return (
       <Card>
-        <Card.Header>{director.Name}</Card.Header>
+        <Card.Header>
+          <h2>{director.Name}</h2>
+        </Card.Header>
         <Card.Body>
           <Card.Text>{director.Bio}</Card.Text>
+          <h2>Movies by this director:</h2>
 
           <Row>
             {' '}

@@ -52,6 +52,7 @@ export function LoginView(props) {
         .then(response => {
           const data = response.data;
           props.onLoggedIn(data);
+          window.open('/', '_self');
         })
         .catch(err => {
           console.log('no such user');

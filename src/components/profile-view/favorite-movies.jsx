@@ -5,7 +5,7 @@ import { Container, Button, Card, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export const FavoriteMoviesCard = props => {
-  const { username, movies, favorites, token } = props;
+  const { username, token } = props;
   const removeMovie = () => {
     axios
       .delete(
