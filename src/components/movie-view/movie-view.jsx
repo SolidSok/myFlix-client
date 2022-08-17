@@ -1,7 +1,6 @@
 import React from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Row, Col, Button, Card } from 'react-bootstrap';
+import { Button, Card, Stack } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './movie-view.scss';
 
@@ -11,43 +10,46 @@ export class MovieView extends React.Component {
     if (!movie) return <div></div>;
     return (
       <Card>
-        <div className="movie-view">
-          <Card.Img
-            variant="top"
-            crossOrigin="anonymous"
-            src={movie.ImagePath}
-          />
+        <Stack gap={1}>
+          <div className="movie-view">
+            <Card.Img
+              variant="top"
+              crossOrigin="anonymous"
+              src={movie.ImagePath}
+            />
 
-          <div className="movie-title">
-            <span className="label">Title: </span>
-            <span className="value">{movie.Title}</span>
-          </div>
-          <div className="movie-description">
-            <span className="label">Description: </span>
-          </div>
-          <div>
-            <span className="value">{movie.Description}</span>
-          </div>
-          <div className="movie-genre">
-            <span className="label">Genre: </span>{' '}
-            <Link to={`genres/${movie.Genre.Name}`}>
-              <Button variant="link">{movie.Genre.Name}</Button>
-            </Link>
-          </div>
-          <div className="movie-director">
-            <span className="label">Director: </span>
-            <Link to={`directors/${movie.Director.Name}`}>
-              <Button variant="link">{movie.Director.Name}</Button>
-            </Link>
-          </div>
+            <Card.Title className="movie-title">
+              <span className="label">Title: </span>
+              <span className="value">{movie.Title}</span>
+            </Card.Title>
+            <div className="movie-description">
+              <span className="label">Description: </span>
+            </div>
+            <div>
+              <span className="value">{movie.Description}</span>
+            </div>
+            <div className="movie-genre">
+              <span className="label">Genre: </span>{' '}
+              <Link to={`/genres/${movie.Genre.Name}`}>
+                <Button variant="info">{movie.Genre.Name}</Button>
+              </Link>
+            </div>
+            <div className="movie-director">
+              <span className="label">Director: </span>
+              <Link to={`/directors/${movie.Director.Name}`}>
+                <Button variant="outline-info">{movie.Director.Name}</Button>
+              </Link>
+            </div>
 
-          <Button
-            onClick={() => {
-              onBackClick(null);
-            }}>
-            Back
-          </Button>
-        </div>
+            <Button
+              variant="warning"
+              onClick={() => {
+                onBackClick(null);
+              }}>
+              Back
+            </Button>
+          </div>
+        </Stack>
       </Card>
     );
   }

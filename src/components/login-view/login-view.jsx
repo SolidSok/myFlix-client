@@ -12,8 +12,6 @@ import {
   Form,
 } from 'react-bootstrap';
 
-
-
 export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -41,7 +39,7 @@ export function LoginView(props) {
     return isReq;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const isReq = validate();
     if (isReq) {
@@ -51,11 +49,11 @@ export function LoginView(props) {
           Username: username,
           Password: password,
         })
-        .then((response) => {
+        .then(response => {
           const data = response.data;
           props.onLoggedIn(data);
         })
-        .catch((err) => {
+        .catch(err => {
           console.log('no such user');
         });
     }
@@ -76,7 +74,7 @@ export function LoginView(props) {
                       type="text"
                       placeholder="Enter username"
                       value={username}
-                      onChange={(e) => setUsername(e.target.value)}
+                      onChange={e => setUsername(e.target.value)}
                     />
                     {usernameErr && <p>{usernameErr}</p>}
                   </Form.Group>
@@ -87,7 +85,7 @@ export function LoginView(props) {
                       type="password"
                       placeholder="Password"
                       value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={e => setPassword(e.target.value)}
                     />
                     {passwordErr && <p>{passwordErr}</p>}
                   </Form.Group>
@@ -95,8 +93,7 @@ export function LoginView(props) {
                   <Button
                     variant="primary"
                     type="submit"
-                    onClick={handleSubmit}
-                  >
+                    onClick={handleSubmit}>
                     Submit
                   </Button>
                 </Form>

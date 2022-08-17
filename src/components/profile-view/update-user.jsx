@@ -1,14 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import {
-  Container,
-  Row,
-  Col,
-  Button,
-  Card,
-  CardGroup,
-  Form,
-} from 'react-bootstrap';
+import { Container, Button, Card, Form } from 'react-bootstrap';
 
 export function UpdateUserView() {
   const [user, updateUser] = useState('');
@@ -60,7 +52,7 @@ export function UpdateUserView() {
       const token = localStorage.getItem('token');
       axios
         .put(
-          `https://sokflix.herokuapp.com/users/${user.Username}`,
+          `https://sokflix.herokuapp.com/users/${user}`,
           {
             Username: user,
             Password: password,

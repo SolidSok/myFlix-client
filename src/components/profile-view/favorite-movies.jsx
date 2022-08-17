@@ -16,7 +16,7 @@ export const FavoriteMoviesCard = props => {
         }
       )
       .then(res => {
-        alert('Movie has been removed from favorites');
+        console.log('Movie has been removed from favorites');
         window.open(`/users/${username}`, '_self');
       })
       .catch(err => console.log(err));

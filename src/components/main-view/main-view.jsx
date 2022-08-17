@@ -5,12 +5,17 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
 import './main-view.scss';
 
-import { setMovies } from '../../actions/actions';
+import {
+  setMovies,
+  setUser,
+  setFavorites,
+  setDirectors,
+  setGenres,
+} from '../../actions/actions';
 
-import MoviesList from '../movies-list/movies-list';
+import MoviesList from '../movies-list/movies-list.jsx';
 
 import { LoginView } from '../login-view/login-view';
-import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { Navbar } from '../navbar/navbar';
@@ -20,23 +25,13 @@ import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
 
 class MainView extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      user: null,
-      favorites: [],
-    };
-  }
   getFavorites(token, user) {
     axios
       .get(`https://sokflix.herokuapp.com/users/${user}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(response => {
-        this.setState({
-          favorites: response.data.FavoriteMovies,
-        });
+        this.props.setFavorites(response.data.FavoriteMovies);
       })
       .catch(error => {
         console.log(error);
@@ -55,16 +50,39 @@ class MainView extends React.Component {
         console.log(error);
       });
   }
-
+  getGenres(token) {
+    axios
+      .get('https://sokflix.herokuapp.com/genres', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(response => {
+        this.props.setGenres(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+  getDirectors(token) {
+    axios
+      .get('https://sokflix.herokuapp.com/directors', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(response => {
+        this.props.setDirectors(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
     let accessUser = localStorage.getItem('user');
     if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem('user'),
-      });
+      this.props.setUser(localStorage.getItem('user'));
       this.getMovies(accessToken);
       this.getFavorites(accessToken, accessUser);
+      this.getDirectors(accessToken);
+      this.getGenres(accessToken);
     }
   }
 
@@ -83,12 +101,11 @@ class MainView extends React.Component {
   }
 
   render() {
-    const { user, favorites } = this.state;
-    let { movies } = this.props;
+    let { movies, user, favorites, genres, directors } = this.props;
 
     return (
       <Router>
-        <Navbar user={user} />
+        <Navbar user={user} directors={directors} genres={genres} />
         <Row className="main-view justify-content-md-center">
           <Route
             exact
@@ -132,7 +149,7 @@ class MainView extends React.Component {
             }}
           />
           <Route
-            path="/movies/directors/:name"
+            path="/directors/:name"
             render={({ match, history }) => {
               if (!user)
                 return (
@@ -161,7 +178,7 @@ class MainView extends React.Component {
             }}
           />
           <Route
-            path="/movies/genres/:name"
+            path="/genres/:name"
             render={({ match, history }) => {
               if (!user)
                 return (
@@ -233,6 +250,18 @@ class MainView extends React.Component {
 }
 
 let mapStateToProps = state => {
-  return { movies: state.movies };
+  return {
+    movies: state.movies,
+    user: state.user,
+    favorites: state.favorites,
+    genres: state.genres,
+    directors: state.directors,
+  };
 };
-export default connect(mapStateToProps, { setMovies })(MainView);
+export default connect(mapStateToProps, {
+  setMovies,
+  setUser,
+  setFavorites,
+  setDirectors,
+  setGenres,
+})(MainView);

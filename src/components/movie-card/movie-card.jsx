@@ -27,7 +27,7 @@ export class MovieCard extends React.Component {
     };
 
     return (
-      <Col md={6} lg={4} xl={3}>
+      <Col>
         <Card>
           <Link to={`/movies/${movie._id}`}>
             <Card.Img
