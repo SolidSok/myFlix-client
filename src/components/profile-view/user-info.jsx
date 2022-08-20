@@ -2,7 +2,6 @@ import React from 'react';
 import { Container, Card } from 'react-bootstrap';
 
 export const UserInfo = props => {
-  const { user, userInfo } = props;
   return (
     <Container>
       <h2>Profile</h2>
