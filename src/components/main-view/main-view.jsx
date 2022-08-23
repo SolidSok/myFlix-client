@@ -116,7 +116,7 @@ class MainView extends React.Component {
               if (movies.length === 0)
                 return <div className="main-view">Loading information...</div>;
 
-              return <MoviesList movies={movies} />;
+              return <MoviesList userInfo={userInfo} movies={movies} />;
             }}
           />
 

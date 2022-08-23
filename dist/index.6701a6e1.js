@@ -25396,6 +25396,7 @@ class MainView extends _reactDefault.default.Component {
                                     children: "Loading information..."
                                 }));
                                 return(/*#__PURE__*/ _jsxRuntime.jsx(_moviesListJsxDefault.default, {
+                                    userInfo: userInfo,
                                     movies: movies
                                 }));
                             },
@@ -44901,16 +44902,51 @@ function MovieCard(props) {
         }).catch((err)=>console.log(err)
         );
     };
+    const removeFavorite = ()=>{
+        _axiosDefault.default.delete(`https://sokflix.herokuapp.com/users/${username}/movies/${props.movie._id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((res)=>{
+            alert(`${movie.Title} has been removed from your favorites`);
+        }).catch((err)=>console.log(err)
+        );
+    };
+    const inFavorites = props.userInfo.FavoriteMovies.includes(movie._id);
+    addFavoritesButton = /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+        variant: "info",
+        onClick: ()=>{
+            addFavorite();
+        },
+        __source: {
+            fileName: "src/components/movie-card/movie-card.jsx",
+            lineNumber: 44
+        },
+        __self: this,
+        children: "Add to favorites"
+    });
+    removeFavoritesButton = /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+        variant: "warning",
+        onClick: ()=>{
+            removeFavorite();
+        },
+        __source: {
+            fileName: "src/components/movie-card/movie-card.jsx",
+            lineNumber: 53
+        },
+        __self: this,
+        children: "Remove from Favorites"
+    });
     return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
         __source: {
             fileName: "src/components/movie-card/movie-card.jsx",
-            lineNumber: 29
+            lineNumber: 63
         },
         __self: this,
         children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Card, {
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 30
+                lineNumber: 64
             },
             __self: this,
             children: [
@@ -44918,7 +44954,7 @@ function MovieCard(props) {
                     to: `/movies/${movie._id}`,
                     __source: {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 31
+                        lineNumber: 65
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Img, {
@@ -44928,7 +44964,7 @@ function MovieCard(props) {
                         src: movie.ImagePath,
                         __source: {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 32
+                            lineNumber: 66
                         },
                         __self: this
                     })
@@ -44936,22 +44972,30 @@ function MovieCard(props) {
                 /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Card.Body, {
                     __source: {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 39
+                        lineNumber: 73
                     },
                     __self: this,
                     children: [
-                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Title, {
+                        /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
+                            to: `/movies/${movie._id}`,
                             __source: {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 40
+                                lineNumber: 74
                             },
                             __self: this,
-                            children: movie.Title
+                            children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Title, {
+                                __source: {
+                                    fileName: "src/components/movie-card/movie-card.jsx",
+                                    lineNumber: 75
+                                },
+                                __self: this,
+                                children: movie.Title
+                            })
                         }),
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Text, {
                             __source: {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 41
+                                lineNumber: 77
                             },
                             __self: this,
                             children: movie.Description
@@ -44960,31 +45004,20 @@ function MovieCard(props) {
                             to: `/movies/${movie._id}`,
                             __source: {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 42
+                                lineNumber: 78
                             },
                             __self: this,
                             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
                                 variant: "link",
                                 __source: {
                                     fileName: "src/components/movie-card/movie-card.jsx",
-                                    lineNumber: 43
+                                    lineNumber: 79
                                 },
                                 __self: this,
-                                children: "Open"
+                                children: "Learn more..."
                             })
                         }),
-                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                            variant: "info",
-                            onClick: ()=>{
-                                addFavorite();
-                            },
-                            __source: {
-                                fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 45
-                            },
-                            __self: this,
-                            children: "Add to favorites"
-                        })
+                        inFavorites ? removeFavoritesButton : addFavoritesButton
                     ]
                 })
             ]
@@ -47959,7 +47992,7 @@ const mapStateToProps = (state)=>{
     };
 };
 function MoviesList(props) {
-    const { movies , visibilityFilter  } = props;
+    const { movies , visibilityFilter , userInfo  } = props;
     let filteredMovies = movies;
     if (visibilityFilter !== '') filteredMovies = movies.filter((m)=>m.Title.toLowerCase().includes(visibilityFilter.toLowerCase())
     );
@@ -48003,6 +48036,7 @@ function MoviesList(props) {
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
                         movie: m,
+                        userInfo: userInfo,
                         __source: {
                             fileName: "src/components/movies-list/movies-list.jsx",
                             lineNumber: 32

@@ -24,6 +24,40 @@ export function MovieCard(props) {
       })
       .catch(err => console.log(err));
   };
+  const removeFavorite = () => {
+    axios
+      .delete(
+        `https://sokflix.herokuapp.com/users/${username}/movies/${props.movie._id}`,
+
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then(res => {
+        alert(`${movie.Title} has been removed from your favorites`);
+      })
+      .catch(err => console.log(err));
+  };
+
+  const inFavorites = props.userInfo.FavoriteMovies.includes(movie._id);
+  addFavoritesButton = (
+    <Button
+      variant="info"
+      onClick={() => {
+        addFavorite();
+      }}>
+      Add to favorites
+    </Button>
+  );
+  removeFavoritesButton = (
+    <Button
+      variant="warning"
+      onClick={() => {
+        removeFavorite();
+      }}>
+      Remove from Favorites
+    </Button>
+  );
 
   return (
     <Col>
@@ -37,18 +71,14 @@ export function MovieCard(props) {
           />
         </Link>
         <Card.Body>
-          <Card.Title>{movie.Title}</Card.Title>
+          <Link to={`/movies/${movie._id}`}>
+            <Card.Title>{movie.Title}</Card.Title>
+          </Link>
           <Card.Text>{movie.Description}</Card.Text>
           <Link to={`/movies/${movie._id}`}>
-            <Button variant="link">Open</Button>
+            <Button variant="link">Learn more...</Button>
           </Link>
-          <Button
-            variant="info"
-            onClick={() => {
-              addFavorite();
-            }}>
-            Add to favorites
-          </Button>
+          {inFavorites ? removeFavoritesButton : addFavoritesButton}
         </Card.Body>
       </Card>
     </Col>
