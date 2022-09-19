@@ -44,9 +44,11 @@ class MainView extends React.Component {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(response => {
+        console.log(response, 'response');
         this.props.setMovies(response.data);
       })
       .catch(error => {
+        this.props.setMovies([]);
         console.log(error);
       });
   }
@@ -74,16 +76,16 @@ class MainView extends React.Component {
         console.log(error);
       });
   }
+
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
     let accessUser = localStorage.getItem('user');
-    if (accessToken !== null) {
-      this.props.setUser(localStorage.getItem('user'));
-      this.getMovies(accessToken);
-      this.getUserInfo(accessToken, accessUser);
-      this.getDirectors(accessToken);
-      this.getGenres(accessToken);
-    }
+
+    this.props.setUser(localStorage.getItem('user'));
+    this.getMovies(accessToken);
+    this.getUserInfo(accessToken, accessUser);
+    this.getDirectors(accessToken);
+    this.getGenres(accessToken);
   }
 
   onLoggedIn(authData) {

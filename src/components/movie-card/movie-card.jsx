@@ -38,7 +38,7 @@ export function MovieCard(props) {
       })
       .catch(err => console.log(err));
   };
-
+  console.log(props, 'props');
   const inFavorites = props.userInfo.FavoriteMovies.includes(movie._id);
   addFavoritesButton = (
     <Button

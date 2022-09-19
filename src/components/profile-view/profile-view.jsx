@@ -84,6 +84,7 @@ export const ProfileView = props => {
             </Modal>
           </Card>
         </Col>
+
         <Col xs={12} sm={10} md={6}>
           <Card>
             <Card.Body>

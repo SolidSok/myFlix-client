@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import './registration-view.scss';
@@ -22,6 +22,9 @@ export function RegistrationView(props) {
     passwordErr: '',
     emailErr: '',
   });
+  useEffect(() => {
+    console.log('a');
+  }, [username]);
 
   const validate = () => {
     let isReq = true;
