@@ -18,8 +18,7 @@ import MoviesList from '../movies-list/movies-list.jsx';
 import { LoginView } from '../login-view/login-view';
 import { MovieView } from '../movie-view/movie-view';
 import { RegistrationView } from '../registration-view/registration-view';
-import { Navbar } from '../navbar/navbar';
-
+import { MovieNav } from '../navbar/navbar';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
@@ -103,7 +102,7 @@ class MainView extends React.Component {
 
     return (
       <Router>
-        <Navbar user={user} directors={directors} genres={genres} />
+        <MovieNav user={user} directors={directors} genres={genres} />
         <Row className="main-view justify-content-md-center">
           <Route
             exact
