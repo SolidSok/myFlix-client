@@ -2,8 +2,6 @@
 
 A React Project using hooks, react-redux, react-bootstrap for styles, and react-router for routing.
 
-![myFlix_App_Image] (src/img/main.png)
-![myFlix_App_Image] (src\img\movie.png)
 
 ## Technologies used:
 
