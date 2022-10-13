@@ -1,12 +1,10 @@
 # myFlix-client
 
-###### Using React, build the client-side for an application called myFlix based on its existing server-side code (REST API and database).[movie_api](https://github.com/leevee6039/movie_api)
-
 A React Project using hooks, react-redux, react-bootstrap for styles, and react-router for routing.
 
 [comment]: <> (insert image for myflix client)
 
-![myFlix_App_Image]
+![myFlix_App_Image] (src/img/main-page.png)
 
 ## Technologies used:
 
@@ -20,10 +18,6 @@ A React Project using hooks, react-redux, react-bootstrap for styles, and react-
 ---
 
 [comment]: <> (insert host site)
-
-Hosted on
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b9bb55fb-1b30-4d96-8c6c-767de35ff0d5/deploy-status)](https://app.netlify.com/sites/leelas-my-flix/deploys)
 
 # Getting Started
 
