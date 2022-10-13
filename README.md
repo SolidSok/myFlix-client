@@ -32,7 +32,7 @@ Your system should have a NPM.
 Required installation to get started with the App, follow these steps.
 
 Clone the repo
-`git clone https://github.com/solidsok/myFlix-client.git`
+`git clone https://github.com/SolidSok/myFlix-client.git`
 
 Install NPM packages
 `npm install`
