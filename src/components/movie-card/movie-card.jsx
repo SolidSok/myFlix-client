@@ -40,7 +40,7 @@ export function MovieCard(props) {
   };
   console.log(props, 'props');
   const inFavorites = props.userInfo.FavoriteMovies.includes(movie._id);
-  addFavoritesButton = (
+  const addFavoritesButton = (
     <Button
       variant="info"
       onClick={() => {
@@ -49,7 +49,7 @@ export function MovieCard(props) {
       Add to favorites
     </Button>
   );
-  removeFavoritesButton = (
+  const removeFavoritesButton = (
     <Button
       variant="warning"
       onClick={() => {

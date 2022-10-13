@@ -63664,18 +63664,21 @@ function MovieCard(props) {
 
   console.log(props, 'props');
   var inFavorites = props.userInfo.FavoriteMovies.includes(movie._id);
-  addFavoritesButton = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
+
+  var addFavoritesButton = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
     variant: "info",
     onClick: function onClick() {
       addFavorite();
     }
   }, "Add to favorites");
-  removeFavoritesButton = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
+
+  var removeFavoritesButton = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
     variant: "warning",
     onClick: function onClick() {
       removeFavorite();
     }
   }, "Remove from Favorites");
+
   return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/movies/".concat(movie._id)
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Img, {
@@ -65262,7 +65265,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55846" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57955" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
