@@ -4,7 +4,7 @@ A React Project using hooks, react-redux, react-bootstrap for styles, and react-
 
 [comment]: <> (insert image for myflix client)
 
-![myFlix_App_Image] (src\img\main.png)
+![myFlix_App_Image] (src/img/main.png)
 ![myFlix_App_Image] (src\img\movie.png)
 
 ## Technologies used:
