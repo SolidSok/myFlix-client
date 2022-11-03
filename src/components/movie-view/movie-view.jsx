@@ -13,6 +13,7 @@ export function MovieView(props) {
         <div className="movie-view">
           <Card.Img
             variant="top"
+            className="movie-poster"
             crossOrigin="anonymous"
             src={movie.ImagePath}
           />

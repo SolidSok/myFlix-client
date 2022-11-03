@@ -63949,6 +63949,7 @@ function MovieView(props) {
     className: "movie-view"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Img, {
     variant: "top",
+    className: "movie-poster",
     crossOrigin: "anonymous",
     src: movie.ImagePath
   }), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Title, {
@@ -65265,7 +65266,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57955" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65384" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
